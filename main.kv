@@ -1,0 +1,541 @@
+windowsmanager:	
+	MainWin:
+	SettingsPage:
+	StartPage:
+	FirstPage:
+	ContorolPage:
+	EndPage:	
+	LastPage:
+
+
+<Label>
+    font_name:'font'
+    font_size: 22
+
+<images>
+    allow_stretch:True
+    keep_ratio: False
+
+
+<MainWin>:
+    name:"main"
+    FloatLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+		
+        Image:
+            source:'images/Background.jpg'
+            allow_stretch:True
+            keep_ratio: False
+        Image:
+            source:'images/ece_logo.png'
+            allow_stretch:True
+            keep_ratio: False
+			size_hint_x: 0.3
+            size_hint_y:0.1
+            pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+        RoundedLabel:
+            size_hint_x: 0.5
+            size_hint_y:0.4
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Label:
+            size_hint_x: 0.3
+            size_hint_y:0.05
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            font_size: 24
+            text: root.reshape_text('نام/آی دی آزمون دهنده را وارد کنید:')
+            color: (170/255, 193/255, 209/255,1)
+
+        TextInput:
+            id: name
+            size_hint_x: 0.3
+            size_hint_y:0.05
+            pos_hint: {'center_x': 0.5, 'center_y': 0.55}
+            multiline: False
+			background_color:(170/255, 193/255, 209/255,1)
+			foreground_color: (43/255, 67/255, 82/255, 1)
+
+        RoundedButton2:
+            size_hint_x: 0.2
+            size_hint_y: 0.1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            text: root.reshape_text('انجام تست')
+            on_release: root.btn()
+
+<SettingsPage>:
+    name:"settings"
+    FloatLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        Image:
+            source:'images/Background.jpg'
+            allow_stretch:True
+            keep_ratio: False
+
+        RoundedLabel:
+            size_hint_x: 0.4
+            size_hint_y: 0.4
+            pos_hint: {'center_x': 0.3, 'center_y':0.725}
+			
+		Label:
+			text: root.reshape_text('جهت پخش صدا را انتخاب کنید:')
+			pos_hint: {'center_x': 0.38, 'center_y': 0.875}
+
+        GridLayout:
+            size_hint_x: 0.35
+            size_hint_y:0.3
+            pos_hint: {'center_x': 0.3, 'center_y':0.7}
+            cols:4
+            Label:
+                text:root.reshape_text('0 درجه')
+            CheckBox:
+                on_active: root.OriBox(self, self.active,1)
+            Label:
+                text:root.reshape_text('45 درجه')
+            CheckBox:
+                on_active: root.OriBox(self, self.active,2)
+            Label:
+                text:root.reshape_text('90 درجه')
+            CheckBox:
+                on_active: root.OriBox(self, self.active,3)
+			Label:
+                text:root.reshape_text('135 درجه')
+            CheckBox:
+                on_active: root.OriBox(self, self.active,4)
+			Label:
+                text:root.reshape_text('180 درجه')
+            CheckBox:
+                on_active: root.OriBox(self, self.active,5)
+            Label:
+                text:root.reshape_text('225 درجه')
+            CheckBox:
+                on_active: root.OriBox(self, self.active,6)
+            Label:
+                text:root.reshape_text('270 درجه')
+            CheckBox:
+                on_active: root.OriBox(self, self.active,7)
+            Label:
+                text:root.reshape_text('315 درجه')
+            CheckBox:
+                on_active: root.OriBox(self, self.active,8)
+
+
+        RoundedLabel:
+            size_hint_x: 0.4
+            size_hint_y: 0.2
+            pos_hint: {'center_x': 0.3, 'y':0.3}
+			
+		Label:
+			text: root.reshape_text('سرعت پخش صدا را مشخص کنید:')
+			pos_hint: {'center_x': 0.38, 'center_y': 0.465}
+			
+        GridLayout:
+            size_hint_x: 0.3
+            size_hint_y: 0.1
+            pos_hint: {'center_x': 0.3 , 'y':0.325}
+            cols:4
+            Label:
+                text:"0.5"
+            CheckBox:
+                on_active: root.SpeedBox(self, self.active,1)
+            Label:
+                text:"1"
+            CheckBox:
+                on_active: root.SpeedBox(self, self.active,2)
+            Label:
+                text:"1.5"
+            CheckBox:
+                on_active: root.SpeedBox(self, self.active,3)
+            Label:
+                text:"2"
+            CheckBox:
+                on_active: root.SpeedBox(self, self.active,4)
+		
+
+        RoundedLabel:
+            size_hint_x: 0.4
+            size_hint_y: 0.45
+            pos_hint: {'center_x': 0.725, 'y':0.475}
+				
+		Label:
+			text: root.reshape_text('منبع صدا را انتخاب کنید:')
+			pos_hint: {'center_x': 0.8, 'center_y': 0.875}
+
+        GridLayout:
+            size_hint: 0.15 ,0.325
+            pos_hint: {'center_x': 0.85, 'y':0.51}
+            cols:2
+            Label:
+                text:root.reshape_text('کودک')
+            CheckBox:
+                on_active: root.SuorceBox(self, self.active,1)
+            Label:
+                text:root.reshape_text('مرد رسمی')
+            CheckBox:
+                on_active: root.SuorceBox(self, self.active,2)
+            Label:
+                text:root.reshape_text('مرد غیر رسمی')
+            CheckBox:
+                on_active: root.SuorceBox(self, self.active,3)
+            Label:
+                text:root.reshape_text('خنثی')
+            CheckBox:
+                on_active: root.SuorceBox(self, self.active,4)
+			Label:
+                text:root.reshape_text('زن رسمی')
+            CheckBox:
+                on_active: root.SuorceBox(self, self.active,5)
+			Label:
+                text:root.reshape_text('زن غیر رسمی')
+            CheckBox:
+                on_active: root.SuorceBox(self, self.active,6)				
+
+        RoundedLabel:
+            size_hint_x: 0.4
+            size_hint_y: 0.15
+            pos_hint: {'center_x': 0.725, 'y':0.3}
+			
+		Label:
+			text: root.reshape_text('تعداد تکرار را وارد کنید:')
+			pos_hint: {'center_x':0.8, 'center_y': 0.425}
+			
+			
+        GridLayout:
+			size_hint: 0.22 ,0.35
+            pos_hint: {'center_x': 0.65, 'y':0.5}
+			cols:1
+			padding :5
+			spacing: 5
+			TextInput:
+				id: sor1
+				font_name:'font'
+				background_color:(170/255, 193/255, 209/255,1)
+				foreground_color: (43/255, 67/255, 82/255, 1)
+				base_direction:'rtl'
+				align:'left'
+			TextInput:
+				id: sor2
+				font_name:'font'
+				background_color:(170/255, 193/255, 209/255,1)
+				foreground_color: (43/255, 67/255, 82/255, 1)
+				base_direction:'rtl'
+				align:'left'
+			TextInput:
+				id: sor3
+				font_name:'font'
+				background_color:(170/255, 193/255, 209/255,1)
+				foreground_color: (43/255, 67/255, 82/255, 1)
+				base_direction:'rtl'
+				align:'left'
+			TextInput:
+				id: sor4
+				font_name:'font'
+				background_color:(170/255, 193/255, 209/255,1)
+				foreground_color: (43/255, 67/255, 82/255, 1)
+				base_direction:'rtl'
+				align:'left'
+			TextInput:
+				id: sor5
+				font_name:'font'
+				background_color:(170/255, 193/255, 209/255,1)
+				foreground_color: (43/255, 67/255, 82/255, 1)
+				base_direction:'rtl'
+				align:'left'
+			TextInput:
+				id: sor6
+				font_name:'font'
+				background_color:(170/255, 193/255, 209/255,1)
+				foreground_color: (43/255, 67/255, 82/255, 1)
+				base_direction:'rtl'
+				align:'left'
+		TextInput:
+			id: task_number
+			size_hint_x: 0.2
+            size_hint_y: 0.05
+			pos_hint: {'center_x':0.725, 'center_y': 0.35}
+			background_color:(170/255, 193/255, 209/255,1)
+			foreground_color: (43/255, 67/255, 82/255, 1)
+			multiline: False
+			input_filter: 'int'
+			
+        RoundedButton:
+            size_hint_x: 0.15
+            size_hint_y: 0.1
+            pos_hint:{'x':0.525, 'y':0.1}
+			on_release: root.btn()
+
+        Label:
+            text: root.reshape_text('انجام تست')
+            size_hint_x: 0.15
+            size_hint_y: 0.1
+            pos_hint:{'x':0.525, 'y':0.1}
+            color:(	5/255, 29/255, 53/255, 1)
+
+        RoundedButton2:
+            size_hint_x: 0.15
+            size_hint_y: 0.1
+            pos_hint:{'x':0.325,'y':0.1}
+			on_press: 
+				app.root.current="main"
+				root.manager.transition.direction= "right"
+				
+        Label:
+            text: root.reshape_text('بازگشت')
+            size_hint_x: 0.15
+            size_hint_y: 0.1
+            pos_hint:{'x':0.325,'y':0.1}
+            color: (170/255, 193/255, 209/255,1)
+
+<StartPage>
+	name:"start"
+	FloatLayout:
+		orientation: 'vertical'
+		size: root.width, root.height
+		
+		Image:
+			source:'images/Background.jpg'
+			allow_stretch:True
+			keep_ratio: False
+	
+		RoundedLabel:
+			size_hint:0.4,0.3
+			pos_hint: {'center_x': 0.5, 'center_y':0.5}
+			
+		Label:
+			font_size:50
+			text: root.reshape_text('خوش آمدید . . .')
+			pos_hint:{'center_x':0.5, 'center_y':0.5}
+								
+		RoundedButton:
+			size_hint_x: 0.15
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'y':0.1}
+			on_release: root.btn()	
+
+		Label:
+			size_hint:0.15,0.1
+			text: root.reshape_text('شروع آزمون')
+			pos_hint:{'center_x':0.5, 'y':0.1}
+			color:(5/255,29/255, 53/255,1)
+			
+<FirstPage>:
+	name:"first"
+	img:img
+	FloatLayout:
+		orientation: 'vertical'
+		size: root.width, root.height
+		
+		Image:
+			source:'images/Background.jpg'
+			allow_stretch:True
+			keep_ratio: False
+	
+		RoundedLabel:
+			size_hint_x: 0.4
+			size_hint_y: 0.6
+			pos_hint: {'center_x': 0.5, 'center_y':0.6}
+			
+		Label:
+			text: root.reshape_text(' کاراکتر:')
+			pos_hint:{'center_x':0.62, 'center_y':0.8}
+			
+		Label:
+			id: my_label
+			font_size:50
+			pos_hint:{'center_x':0.5, 'center_y':0.75}			
+			
+        Image:
+            id: img
+			#source: "images/45 deg.png"
+			size_hint: 0.25, 0.3
+			pos_hint: {'center_x': 0.5, 'center_y': 0.5}					
+		
+		RoundedButton:
+			size_hint_x: 0.15
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'y':0.1}
+			on_release: root.btn()
+			
+		Label:
+			text: root.reshape_text('ادامه')
+			size_hint_x: 0.15
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'y':0.1}
+			color:(5/255, 29/255, 53/255, 1)
+		
+		RoundedButton2:
+			id: main_button
+			size_hint_x: 0.15
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.1, 'center_y':0.9}
+			on_release: root.show_password_popup()
+			
+		Label:
+			id: main_buttonl
+			text: root.reshape_text('اتمام')
+			size_hint_x: 0.15
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.1, 'center_y':0.9}
+			color:(170/255, 193/255, 209/255,1)		
+		
+		
+<ContorolPage>
+	name:"contorl"
+	FloatLayout:
+		orientation: 'vertical'
+		size: root.width, root.height
+		Image:
+			source:'images/Background.jpg'
+			allow_stretch:True
+			keep_ratio: False
+
+
+		RoundedButton2:
+			id: button2
+			size_hint: 0.35 , 0.25
+			pos_hint:{'center_x':0.5, 'center_y':0.6}
+			on_press: root.stop_timer()
+			opacity: 0  # Initially hidden
+            disabled: True  # Initially disabled
+			
+			
+		RoundedButton:
+			id: button1
+			size_hint: 0.35 , 0.1
+			pos_hint:{'center_x':0.5, 'center_y':0.4}
+			on_press: root.start_timer()
+	
+		Label:
+			id : lab2
+			text: root.reshape_text('شروع')
+			font_size: 50
+			pos_hint:{'center_x':0.5, 'center_y':0.4}
+			color:(5/255, 29/255, 53/255, 1)
+
+<EndPage>
+	name:"end"
+	FloatLayout:
+		orientation: 'vertical'
+		size: root.width, root.height
+		
+		Image:
+			source:'images/Background.jpg'
+			allow_stretch:True
+			keep_ratio: False
+	
+		RoundedLabel:
+			size_hint:0.4,0.3
+			pos_hint: {'center_x': 0.5, 'center_y':0.5}
+			
+		Label:
+			font_size:50
+			text: root.reshape_text('آزمون به پایان رسید.')
+			pos_hint:{'center_x':0.5, 'center_y':0.5}
+								
+		RoundedButton:
+			id: main_button
+			size_hint_x: 0.15
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'y':0.1}
+			on_release: root.show_password_popup()
+			
+		Label:
+			id: main_buttonl
+			text: root.reshape_text('اتمام')
+			size_hint_x: 0.15
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'y':0.1}
+			color:(5/255,29/255, 53/255,1)
+			
+			
+<LastPage>
+	name:"last"
+	FloatLayout:
+		orientation: 'vertical'
+		size: root.width, root.height
+		Image:
+			source:'images/Background.jpg'
+			allow_stretch:True
+			keep_ratio: False
+
+		RoundedLabel:
+			size_hint_x: 0.3
+			size_hint_y: 0.5
+			pos_hint: {'center_x': 0.5, 'center_y':0.5}
+			
+		RoundedButton2:
+			size_hint_x: 0.2
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'center_y':0.63}
+			on_release: root.save_exit()
+
+		Label:
+			text: root.reshape_text('ذخیره و خروج')
+			size_hint_x: 0.2
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'center_y':0.63}
+			color: (170/255, 193/255, 209/255,1)		
+		
+		RoundedButton:
+			size_hint_x: 0.2
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'center_y':0.5}
+			on_release: root.save_continue()
+			
+		Label:
+			text: root.reshape_text('ذخیره و تست مجدد')
+			size_hint_x: 0.2
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'center_y':0.5}
+			color:(5/255, 29/255, 53/255, 1)
+
+
+		RoundedButton:
+			size_hint_x: 0.2
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'center_y':0.37}
+			on_release: root.exitAPP()
+			
+		Label:
+			text: root.reshape_text('خروج')
+			size_hint_x: 0.2
+			size_hint_y: 0.1
+			pos_hint:{'center_x':0.5, 'center_y':0.37}
+			color:(5/255, 29/255, 53/255, 1)
+
+<RoundedButton2@Button>
+    background_normal:''
+    background_color:(0,0,0,0)
+    font_name:'font'
+    canvas.before:
+        Color:
+            rgba:(43/255, 67/255, 82/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[20]
+
+<RoundedButton@Button>
+    background_normal:''
+    background_color:(0,0,0,0)
+    canvas.before:
+        Color:
+            rgba:(170/255, 193/255, 209/255,1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[20]
+
+
+<RoundedLabel@Label>
+    background_normal:''
+    background_color:(0,0,0,0)
+    font_name:'font'
+    canvas.before:
+        Color:
+            rgba:(43/255, 67/255, 82/255, 0.85)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[32]
