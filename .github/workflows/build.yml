@@ -16,7 +16,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y libtinfo5 openjdk-8-jdk unzip wget python3-pip
-          pip3 install buildozer
+          pip3 install buildozer cython
 
       - name: Set up Android SDK and NDK
         env:
@@ -36,8 +36,6 @@ jobs:
           mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
 
           export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
-          ls -la $ANDROID_HOME/cmdline-tools/latest/bin
-
           yes | sdkmanager --licenses
           sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0"
 
