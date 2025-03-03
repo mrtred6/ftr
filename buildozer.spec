@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = My Application
+title = Auditory Trust Test
 
 # (str) Package name
-package.name = myapp
+package.name = AuditoryTrustTest
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.muyuuyu
+package.domain = org.AuditoryTrustTest
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -110,7 +110,7 @@ android.permissions = WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE
 #android.sdk = 20
 
 # (str) Android NDK version to use
-#android.ndk = 23b
+android.ndk = r21e
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
