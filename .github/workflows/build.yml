@@ -1,4 +1,4 @@
-name: Build Kivy APK
+name: Build Kivy App to APK
 
 on:
   push:
@@ -6,23 +6,34 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
-
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install Dependencies
+      - uses: actions/checkout@v4
+      
+      # نصب وابستگی‌های مورد نیاز برای Buildozer
+      - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y libtinfo5
+          sudo apt install -y libtinfo5 libncurses5 wget unzip
 
+      # دانلود و تنظیم NDK نسخه r21e
+      - name: Setup NDK
+        run: |
+          wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip
+          unzip android-ndk-r21e-linux-x86_64.zip
+          echo "LEGACY_NDK=$PWD/android-ndk-r21e" >> $GITHUB_ENV
+
+      # نصب Buildozer و Cython
+      - name: Install Buildozer
+        run: |
+          pip install buildozer Cython==0.29.36
+
+      # ساخت APK با استفاده از Buildozer
       - name: Build APK
-        uses: digreatbrian/buildozer-action@v2
-        with:
-          python-version: 3.8
-          buildozer-cmd: buildozer -v android debug
+        run: |
+          buildozer -v android debug
 
+      # آپلود خروجی APK به عنوان Artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
