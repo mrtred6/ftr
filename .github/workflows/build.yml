@@ -26,14 +26,14 @@ jobs:
           LEGACY_NDK: ${{ runner.temp }}/android-ndk-r21e
         run: |
           # Setup SDK
-          mkdir -p $ANDROID_HOME/cmdline-tools
-          cd $ANDROID_HOME/cmdline-tools
+          mkdir -p $ANDROID_HOME/cmdline-tools/latest
+          cd $ANDROID_HOME/cmdline-tools/latest
           wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O sdk-tools.zip
-          unzip sdk-tools.zip -d tools
+          unzip sdk-tools.zip
           rm sdk-tools.zip
 
-          export PATH=$ANDROID_HOME/cmdline-tools/tools/bin:$ANDROID_HOME/platform-tools:$PATH
-          ls -la $ANDROID_HOME/cmdline-tools/tools/bin
+          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+          ls -la $ANDROID_HOME/cmdline-tools/latest/bin
 
           yes | sdkmanager --licenses
           sdkmanager "platform-tools" "platforms;android-31" "build-tools;31.0.0"
