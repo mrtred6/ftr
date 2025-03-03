@@ -31,9 +31,7 @@ jobs:
           wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O sdk-tools.zip
           unzip sdk-tools.zip
           rm sdk-tools.zip
-
-          # Move extracted files to the correct path
-          mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
+          mv cmdline-tools latest
 
           export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
           yes | sdkmanager --licenses
@@ -41,9 +39,9 @@ jobs:
 
           # Setup NDK r21e
           cd ${{ runner.temp }}
-          wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip
-          unzip android-ndk-r21e-linux-x86_64.zip
-          rm android-ndk-r21e-linux-x86_64.zip
+          wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip -O android-ndk.zip
+          unzip android-ndk.zip
+          rm android-ndk.zip
           echo "NDK setup complete."
 
       - name: Build APK
